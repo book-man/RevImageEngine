@@ -21,6 +21,14 @@ class Image(models.Model):
         return self.file.name
 
 
+@python_2_unicode_compatible
+class UploadedImage(models.Model):
+    file = models.ImageField(upload_to='uploaded_images/images')
+    features = PickledObjectField(default=0)
+
+    def __str__(self):
+        return self.file.name
+
 # # Create your models here.
 # class Uploads(models.Model):
 #     #up_user = models.ForeignKey(User, related_name='up_user',on_delete=models.SET_NULL,null=True,blank=True)

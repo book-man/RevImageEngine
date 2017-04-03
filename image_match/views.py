@@ -9,13 +9,13 @@
 # from django.shortcuts import render_to_response
 
 from django.views import generic
-from .models import Image
+from .models import UploadedImage
 from .response import JSONResponse, response_mimetype
 
 # Create your views here.
 
 class ImageCreateView(generic.CreateView):
-    model = Image
+    model = UploadedImage
     fields = '__all__'
     
     def form_valid(self,form):
