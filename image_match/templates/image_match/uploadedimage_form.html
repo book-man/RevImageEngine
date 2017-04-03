@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Upload pictures</title>
+        <link href="{% static 'image_match/css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <form class="dropzone" action="{% url 'image_match:home' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="fallback">
+                <input name="file" type="file" multiple />
+            </div>
+        </form>
+        <script src="{% static 'image_match/js/dropzone.js' %}"></script>
+    </body>
+</html>
