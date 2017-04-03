@@ -6,6 +6,8 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 #from django.contrib.auth.models import User
 
+from picklefield.fields import PickledObjectField
+
 import datetime
 import json
 
@@ -13,6 +15,7 @@ import json
 @python_2_unicode_compatible
 class Image(models.Model):
     file = models.ImageField(upload_to='uploaded_images/uploads')
+    features = PickledObjectField(default=0)
 
     def __str__(self):
         return self.file.name
