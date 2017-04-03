@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'allauth',
     # 'allauth.account',
+    'kombu.transport.django',
     'image_match',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +81,7 @@ WSGI_APPLICATION = 'image_engine.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(os.path.dirname(__file__), 'db.sqlite3'),
     }
 }
 
@@ -108,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Johannesburg'
 
 USE_I18N = True
 
@@ -125,3 +127,30 @@ STATIC_URL = '/static/'
 # Media Storage
 MEDIA_ROOT = os.path.join(BASE_DIR,'uploaded_images')
 MEDIA_URL = '/media/'
+
+# Celery 
+import djcelery
+djcelery.setup_loader()
+
+
+# CELERY SETTINGS
+RABBIT_USERNAME = 'mime_engine'
+RABBIT_USERPASSWORD = '8d02f4de8da9aa2ef4627e036a0ef0ed'
+RABBIT_VHOST = 'mime_engine_vhost'
+RABBIT_USERTAG = 'mime_engine_vhost'
+RABBIT_PORT = 5672
+RABBIT_SERVERLOCATION = 'localhost' # '192.168.0.70'
+RABBIT_TRANSPORT = 'django'#'librabbitmq'
+HTTP_OR_HTTPS= 'http'
+
+RabbitMQ_REMOTE_URL = 'amqp://%s:%s@%s:%s/%s'%(RABBIT_USERNAME,RABBIT_USERPASSWORD,RABBIT_SERVERLOCATION,RABBIT_PORT,RABBIT_VHOST)
+
+# CELERY STUFF
+BROKER_TRANSPORT = 'django'
+BROKER_URL = "%s://%s:%s@%s:%s/%s"%(RABBIT_TRANSPORT,RABBIT_USERNAME,RABBIT_USERPASSWORD,RABBIT_SERVERLOCATION,RABBIT_PORT,RABBIT_VHOST)
+# RabbitMQ_REMOTE_URL = RabbitMQ_REMOTE_URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Africa/Johannesburg'
