@@ -20,10 +20,10 @@ for imagePath in glob.glob(dataset_path + "/*.jpg"):
         features = cd.describe(image)
         
         ## Save the features to db
-        __image, created = Image.update_or_create( img_id=img_id,
-                                                defaults = {
+        __image, created = Image.objects.update_or_create( img_id=img_id,
+                                                    defaults = {
                                                     "img_file":imagePath,
                                                     "img_features":features
-                                                },)
+                                                    },)
         if created:
             print(created)
