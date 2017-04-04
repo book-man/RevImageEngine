@@ -15,7 +15,7 @@ import json
 @python_2_unicode_compatible
 class Image(models.Model):
     img_id = models.IntegerField(default=-1)
-    img_file = models.ImageField(upload_to='uploaded_images/images')
+    img_file = models.ImageField(upload_to=None)
     img_features = PickledObjectField(default=0)
 
     def __str__(self):
@@ -29,6 +29,16 @@ class UploadedImage(models.Model):
 
     def __str__(self):
         return self.up_file.name
+
+
+@python_2_unicode_compatible
+class MostSimilarImages(models.Model):
+    sim_uploaded_image = models.OneToOneField(UploadedImage,related_name='uploaded_image_most_sim',on_delete=models.CASCADE,null=True,blank=True)
+    sim_top_n = PickledObjectField(default='') ##list of ordered pks
+
+
+
+
 
 # # Create your models here.
 # class Uploads(models.Model):

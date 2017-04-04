@@ -7,7 +7,7 @@ from django.conf import settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','image_engine.settings')
 app = Celery('image_engine', broker=BROKER_URL)
 
-app.config_from_object('django.conf:settings', namespace='CELERY')
+app.config_from_object('django.conf:settings')
 
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
