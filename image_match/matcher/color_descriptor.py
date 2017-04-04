@@ -8,7 +8,7 @@ class ColorDescriptor:
 
     """
     def __init__(self,bins):
-        self.bins
+        self.bins = bins
 
     def describe(self,image):
         """ Convert the image to HSV color space and initialize features 
@@ -25,7 +25,7 @@ class ColorDescriptor:
 
         """ Construct an elliptical mask representing the center of the image """
         (axesX,axesY) = (int(w*0.75)/2,int(h*0.75)/2)
-        ellipMask = np.zeros(image.shape[:2],dtype='unit8')
+        ellipMask = np.zeros(image.shape[:2],dtype='uint8')
         cv2.ellipse(ellipMask,(cX,cY),(axesX,axesY),0,0,360,255,-1)
 
         """ Loop over segments """
@@ -50,7 +50,7 @@ class ColorDescriptor:
         # normalize the histogram
         hist = cv2.calcHist([image], [0, 1, 2], mask, self.bins,
             [0, 180, 0, 256, 0, 256])
-        hist = cv2.normalize(hist).flatten()
+        hist = cv2.normalize(hist,hist).flatten()
 
         # return the histogram
         return hist

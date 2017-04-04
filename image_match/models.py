@@ -14,20 +14,21 @@ import json
 
 @python_2_unicode_compatible
 class Image(models.Model):
-    file = models.ImageField(upload_to='uploaded_images/uploads')
-    features = PickledObjectField(default=0)
+    img_id = models.IntegerField(default=-1)
+    img_file = models.ImageField(upload_to='uploaded_images/images')
+    img_features = PickledObjectField(default=0)
 
     def __str__(self):
-        return self.file.name
+        return self.img_file.name
 
 
 @python_2_unicode_compatible
 class UploadedImage(models.Model):
-    file = models.ImageField(upload_to='uploaded_images/images')
-    features = PickledObjectField(default=0)
+    up_file = models.ImageField(upload_to='uploaded_images/uploads')
+    up_features = PickledObjectField(default=0)
 
     def __str__(self):
-        return self.file.name
+        return self.up_file.name
 
 # # Create your models here.
 # class Uploads(models.Model):
