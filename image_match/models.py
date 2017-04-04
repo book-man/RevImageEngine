@@ -33,9 +33,11 @@ class UploadedImage(models.Model):
 
 @python_2_unicode_compatible
 class MostSimilarImages(models.Model):
-    sim_uploaded_image = models.OneToOneField(UploadedImage,related_name='uploaded_image_most_sim',on_delete=models.CASCADE,null=True,blank=True)
+    sim_uploaded_image = models.ForeignKey(UploadedImage,related_name='uploaded_image_most_sim',on_delete=models.CASCADE,null=True,blank=True)
     sim_top_n = PickledObjectField(default='') ##list of ordered pks
 
+    def __str__(self):
+        return 'top sim'
 
 
 
