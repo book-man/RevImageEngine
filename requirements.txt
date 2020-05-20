@@ -42,7 +42,7 @@ google-api-python-client==1.6.2
 Google-Search-API==1.1.13
 gunicorn==19.6.0
 hashids==1.2.0
-httplib2==0.10.3
+httplib2==0.18.0
 idna==2.2
 imagesize==0.7.1
 ipaddress==1.0.18
