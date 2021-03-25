@@ -82,7 +82,7 @@ pyparsing==2.1.10
 python-dateutil==2.6.0
 python-openid==2.2.5
 pytz==2016.10
-PyYAML==3.12
+PyYAML==5.4
 redis==2.10.5
 requests==2.13.0
 requests-oauthlib==0.7.0
