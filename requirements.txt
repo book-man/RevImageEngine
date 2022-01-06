@@ -9,7 +9,7 @@ beautifulsoup4==4.5.3
 billiard==3.5.0.2
 boto==2.43.0
 bz2file==0.98
-celery==4.0.2
+celery==5.2.2
 cffi==1.9.1
 chardet==2.3.0
 contextlib2==0.5.4
