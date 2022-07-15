@@ -21,7 +21,7 @@ django-allauth==0.30.0
 django-bootstrap-form==3.2.1
 django-bootstrap3==7.1.0
 django-celery==3.2.1
-django-celery-results==1.0.1
+django-celery-results==2.4.0
 django-el-pagination==3.0.1
 django-extensions==1.7.7
 django-facebook==6.0.3
